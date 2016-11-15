@@ -1,6 +1,7 @@
 body {
     font-family: "Segoe UI", "Lucida Grande", Tahoma, sans-serif;
     font-size: 100%;
+    min-width: 300px;
 }
 
 #status {
@@ -12,4 +13,8 @@ body {
 
 .button {
     text-align: center;
+}
+
+.textBox {
+    min-width: 300px;
 }
