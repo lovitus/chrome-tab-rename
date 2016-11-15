@@ -8,11 +8,10 @@
   },
   "browser_action": {
     "default_icon": "images/rename.png",
-    "default_title": "Change the current tab's name",
+    "default_title": "Change the current tab's title.",
     "default_popup": "popup.html"
   },
   "permissions": [
-    "tabs",
     "activeTab"
   ],
   "background": {
