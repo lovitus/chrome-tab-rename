@@ -15,19 +15,9 @@
     "tabs",
     "activeTab"
   ],
-  "content_scripts": [
-    {
-      "matches": [
-        "<all_urls>"
-      ],
-      "js": [
-        "scripts/rename.js"
-      ]
-    }
-  ],
   "background": {
     "scripts": [
-      "scripts/background.js"
+      "scripts/rename.js"
     ]
   }
 }
