@@ -14,4 +14,8 @@ function changeTitle() {
     window.close();
 }
 
+chrome.tabs.getSelected(null, function (tab) {
+    document.getElementById('newTitle').value = tab.title;
+});
+
 document.getElementById('renameTab').addEventListener('click', changeTitle);
