@@ -10,27 +10,23 @@ function changeTitle() {
                 code: 'document.title="' + newTitle + '"'
             }
         );
+        //save(newTitle);
     }
-    //save(newTitle);
     window.close();
 }
 
-var pageUrl;
-chrome.tabs.getSelected(null, function (tab) {
-    document.getElementById('newTitle').value = tab.title;
-    pageUrl = tab.url;
-});
-
 function save(title) {
+    var pageUrl = chrome.tabs.getSelected(null, function (tab) {
+        return tab.url;
+    });
     var data = {};
     data[pageUrl] = title;
-    chrome.storage.local.set({'currentTitle': data}, function () {
-        //Settings saved
-    });
+    chrome.storage.local.set({'data': data});
 }
 
-// chrome.storage.local.get(data, function(result){
-// });
+chrome.tabs.getSelected(null, function (tab) {
+    document.getElementById('newTitle').value = tab.title;
+});
 
 document.getElementById('renameTab').addEventListener('click', changeTitle);
 document.getElementById('newTitle').addEventListener('keypress', function (event) {
