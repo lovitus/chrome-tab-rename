@@ -4,9 +4,12 @@ body {
 }
 
 #status {
-    /* avoid an excessively wide status text */
     white-space: pre;
     text-overflow: ellipsis;
     overflow: hidden;
     max-width: 400px;
+}
+
+.button {
+    text-align: center;
 }
