@@ -1,0 +1,33 @@
+{
+  "manifest_version": 2,
+  "name": "Rename Tab",
+  "version": "1.0",
+  "description": "This extension allows you to rename browser tab titles.",
+  "icons": {
+    "128": "images/rename.png"
+  },
+  "browser_action": {
+    "default_icon": "images/rename.png",
+    "default_title": "Change the current tab's name",
+    "default_popup": "popup.html"
+  },
+  "permissions": [
+    "tabs",
+    "activeTab"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "scripts/rename.js"
+      ]
+    }
+  ],
+  "background": {
+    "scripts": [
+      "scripts/background.js"
+    ]
+  }
+}
