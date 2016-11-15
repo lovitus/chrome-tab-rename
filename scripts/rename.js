@@ -3,11 +3,15 @@
  */
 
 function changeTitle() {
-    chrome.tabs.executeScript(
-        {
-            code: 'document.title="Renamed"'
-        }
-    );
+    var newTitle = document.getElementById('newTitle').value;
+    if(newTitle !== '') {
+        chrome.tabs.executeScript(
+            {
+                code: 'document.title="' + newTitle + '"'
+            }
+        );
+    }
+    window.close();
 }
 
 document.getElementById('renameTab').addEventListener('click', changeTitle);
