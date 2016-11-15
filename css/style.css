@@ -4,13 +4,6 @@ body {
     min-width: 300px;
 }
 
-#status {
-    white-space: pre;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    max-width: 400px;
-}
-
 .button {
     text-align: center;
 }
