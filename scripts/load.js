@@ -2,16 +2,16 @@
  * Created by seifkamal on 15/11/2016.
  */
 
-var pageUrl = chrome.tabs.getSelected(null, function (tab) {
-    return tab.url;
-});
+delete window.alert;
 
-chrome.storage.local.get('data', function (result) {
-    if (result.data[pageUrl] !== undefined) {
-        chrome.tabs.executeScript(
-            {
-                code: 'document.title="' + result.data[pageUrl] + '"'
-            }
-        );
+function setCurrentTitle(title) {
+    chrome.runtime.sendMessage({title: title}, function (response) {
+        //confirm message received
+    });
+}
+
+chrome.storage.local.get('title', function (result) {
+    if (result.title !== undefined) {
+        setCurrentTitle(result.title);
     }
 });
