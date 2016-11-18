@@ -2,7 +2,7 @@
  * Created by seifkamal on 15/11/2016.
  */
 
-var bkg = chrome.extension.getBackgroundPage();
+var bkg = chrome.extension.getBackgroundPage(); //TODO fix
 
 //Listen for content script message
 chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
@@ -20,7 +20,7 @@ function changeTitle() {
         chrome.tabs.executeScript({
             code: 'document.title="' + newTitle + '"'
         });
-        save(newTitle);
+        //save(newTitle);
     }
     window.close();
 }

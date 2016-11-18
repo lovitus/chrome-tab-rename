@@ -8,8 +8,8 @@ function setCurrentTitle(title) {
     });
 }
 
-chrome.storage.local.get('title', function (result) {
+chrome.storage.local.get('title', function (result) { //TODO check
     if (result.title !== undefined) {
-        setCurrentTitle(result.title);
+        //setCurrentTitle(result.title);
     }
 });
