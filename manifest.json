@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "Rename Tab",
-  "version": "1.1",
+  "version": "1.1.0",
   "description": "This extension allows you to rename browser tab titles.",
   "icons": {
     "128": "images/rename.png"
