@@ -19,5 +19,12 @@
     "scripts": [
       "scripts/rename.js"
     ]
+  },
+  "commands": {
+    "_execute_browser_action": {
+      "suggested_key": {
+        "default": "Alt+R"
+      }
+    }
   }
 }
