@@ -22,8 +22,9 @@
         "<all_urls>"
       ],
       "js": [
-        "scripts/load.js"
-      ]
+        "scripts/start.js"
+      ],
+      "run_at": "document_end"
     }
   ],
   "background": {
