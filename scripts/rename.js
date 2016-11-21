@@ -2,56 +2,51 @@
  * Created by seifkamal on 15/11/2016.
  */
 
-var currentTitle;
-//Listen for content script message
-chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
-    if(request.title !== undefined) {
-        chrome.tabs.executeScript({
-            code: 'document.title="' + request.title + '"'
-        });
-        currentTitle = request.title;
-        //sendResponse({success: "Title received"});
-    } else {
-        //currentTitle = document.title;
-    }
-});
-console.log(currentTitle);
-
-//Pre-populate text box with current title
-var url;
-chrome.tabs.query({active: true, currentWindow: true}, function (tabs) {
-    document.getElementById('textBox').value = tabs[0].title;
-    url = tabs[0].url;
-});
-
-//Change page title using the value from the textbox
-function changeTitle() {
-    var newTitle = document.getElementById('textBox').value;
-    if(newTitle !== '') {
-        chrome.tabs.executeScript({
-            code: 'document.title="' + newTitle + '"'
-        });
-    }
-    window.close();
-    return newTitle;
+//Change page title
+function changeTitle(title) {
+    chrome.tabs.executeScript({
+        code: 'document.title="' + title + '"'
+    });
 }
 
 //Save current title
 function save(title) {
-    if(title !== currentTitle) {
-        data[url] = title;
-        chrome.storage.local.set(data, function () {
-            //Title saved
+    if (title !== currentTitle) {
+        chrome.storage.local.set({title: title}, function () { //TODO save correct data
+            //Custom title saved
+            currentTitle = title;
         });
-        currentTitle = title;
     }
 }
 
+//Change title and save
 function renamePage() {
-    var newTitle = changeTitle();
+    var newTitle = document.getElementById('textBox').value;
+    if (newTitle !== '') {
+        changeTitle(newTitle);
+    }
+    window.close();
     save(newTitle);
 }
 
+var currentTitle = document.title;
+var pageUrl;
+
+//TODO move 'load' to separate script
+//Listen for content script message
+chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
+    pageUrl = request.url;
+    console.log(pageUrl);
+    sendResponse({success: "Url received: " + pageUrl});//
+    chrome.storage.local.get('title', function (result) {
+        //TODO get title object from storage
+    });
+});
+
+chrome.tabs.query({active: true, currentWindow: true}, function (tabs) {
+    //Pre-populate text box with current title
+    document.getElementById('textBox').value = tabs[0].title;
+});
 
 //Add click and 'enter' key listeners for 'rename' button
 document.getElementById('renameBtn').addEventListener('click', renamePage);
