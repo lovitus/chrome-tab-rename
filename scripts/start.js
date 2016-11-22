@@ -4,7 +4,8 @@
 
 debugger;
 
+//Send page URL to rename.js on page load
 chrome.runtime.sendMessage({url: location.href}, function (response) {
-    //confirm message received
+    //Confirm message received
     console.log(response.success);
 });
