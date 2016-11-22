@@ -12,7 +12,8 @@ function changeTitle(title) {
 //Save current title
 function save(title) {
     if (title !== currentTitle) {
-        chrome.storage.local.set({title: title}, function () { //TODO save correct data
+        //TODO save correct data (associate title with url?)
+        chrome.storage.local.set({title: title}, function () {
             //Custom title saved
             currentTitle = title;
         });
@@ -22,9 +23,7 @@ function save(title) {
 //Change title and save
 function renamePage() {
     var newTitle = document.getElementById('textBox').value;
-    if (newTitle !== '') {
-        changeTitle(newTitle);
-    }
+    if (newTitle !== '') changeTitle(newTitle);
     window.close();
     save(newTitle);
 }
@@ -36,10 +35,11 @@ var pageUrl;
 //Listen for content script message
 chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
     pageUrl = request.url;
-    console.log(pageUrl);
+    console.log(pageUrl);//
     sendResponse({success: "Url received: " + pageUrl});//
     chrome.storage.local.get('title', function (result) {
-        //TODO get title object from storage
+        //TODO get title object from storage (using url?)
+        if(result.title !== undefined) currentTitle = result.title;
     });
 });
 
@@ -50,8 +50,4 @@ chrome.tabs.query({active: true, currentWindow: true}, function (tabs) {
 
 //Add click and 'enter' key listeners for 'rename' button
 document.getElementById('renameBtn').addEventListener('click', renamePage);
-document.getElementById('textBox').addEventListener('keypress', function (event) {
-    if (event.keyCode == 13) {
-        renamePage();
-    }
-});
+document.getElementById('textBox').addEventListener('keypress', function (event) { if (event.keyCode == 13) renamePage(); });
