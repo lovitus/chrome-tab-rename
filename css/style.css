@@ -10,4 +10,6 @@ body {
 
 .textBox {
     min-width: 300px;
+    padding: 2px;
+    margin: 5px;
 }
