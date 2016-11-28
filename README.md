@@ -1,4 +1,4 @@
-#Chrome Tabs Rename Tool
+#Chrome Tab Rename
 A simple Google Chrome extension that allows the user to change
 the browser tab titles.
 
@@ -15,3 +15,18 @@ on the browser bar (top right).
 ##Usage
 Simple click the extension icon, enter a new title for the tab
 and click `Rename Tab`! :)
+
+Alternatively, use the keyboard shortcut `Alt+R` to directly
+open the rename popup. This shortcut can also be changed from the 
+manifest:
+```json
+{
+  "commands": {
+    "_execute_browser_action": {
+      "suggested_key": {
+        "default": "Alt+R"
+      }
+    }
+  }
+}
+```
