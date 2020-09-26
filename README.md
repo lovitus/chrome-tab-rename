@@ -2,7 +2,7 @@
 A simple Google Chrome extension that allows a user to change tab titles.
 
 ## Installation
-* `git clone git@github.com:safe-k/chrome-tab-rename.git`
+* `git clone git@github.com:seifkamal/chrome-tab-rename.git`
 * From Chrome, navigate to `chrome://extensions`
 * Make sure `Developer mode` on the top right is checked
 * Click on `Load unpacked extensions...`
